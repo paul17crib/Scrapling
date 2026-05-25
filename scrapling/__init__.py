@@ -5,6 +5,9 @@ smart element detection, and robust anti-bot bypass capabilities.
 
 Personal fork: added CamelFetcher aliases for convenience and
 noted that PlayWrightFetcher is the preferred async browser fetcher.
+
+Note to self: StealthyFetcher is better for JS-heavy sites,
+use plain Fetcher for simple HTML pages (much faster).
 """
 
 __version__ = "0.2.0"
@@ -24,12 +27,18 @@ from scrapling.core.element import Element
 # these lowercase-friendly aliases for my own scripts.
 PlaywrightFetcher = PlayWrightFetcher  # noqa: E305
 
+# Shorthand aliases I use frequently in personal scripts
+SFetcher = StealthyFetcher
+PFetcher = PlayWrightFetcher
+
 __all__ = [
     "Fetcher",
     "AsyncFetcher",
     "PlayWrightFetcher",
     "PlaywrightFetcher",  # personal alias
     "StealthyFetcher",
+    "SFetcher",   # shorthand for StealthyFetcher
+    "PFetcher",   # shorthand for PlayWrightFetcher
     "Page",
     "Element",
 ]
