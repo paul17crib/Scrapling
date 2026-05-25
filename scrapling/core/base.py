@@ -79,6 +79,9 @@ class BaseFetcher(ABC):
     def _build_headers(self, extra: Optional[Dict[str, str]] = None) -> Dict[str, str]:
         """Merge instance-level headers with any request-specific headers.
 
+        Per-request headers in `extra` take precedence over instance-level
+        headers, allowing easy per-call overrides without mutating state.
+
         Args:
             extra: Optional per-request headers to merge.
 
@@ -104,6 +107,4 @@ class AsyncBaseFetcher(BaseFetcher):
 
     @abstractmethod
     async def fetch(self, url: str, **kwargs: Any) -> Any:  # type: ignore[override]
-        """Asynchronously fetch content from the given URL.
-
-       
+  
