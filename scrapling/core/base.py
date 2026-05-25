@@ -38,7 +38,7 @@ class BaseFetcher(ABC):
 
     def __init__(
         self,
-        timeout: int = 30,
+        timeout: int = 60,  # increased from 30 -- 30s was too short for slow sites I scrape
         retries: int = 3,
         headers: Optional[Dict[str, str]] = None,
         proxy: Optional[str] = None,
@@ -106,14 +106,4 @@ class AsyncBaseFetcher(BaseFetcher):
     async def fetch(self, url: str, **kwargs: Any) -> Any:  # type: ignore[override]
         """Asynchronously fetch content from the given URL.
 
-        Args:
-            url: The target URL to fetch.
-            **kwargs: Additional options for the fetch operation.
-
-        Returns:
-            Parsed page content or response object.
-
-        Raises:
-            FetchError: If the fetch operation fails after all retries.
-        """
-        raise NotImplementedError
+       
